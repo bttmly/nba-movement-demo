@@ -2,6 +2,9 @@
 
 A tiny app using data plled with [`nba-movement`](https://github.com/nickb1080/nba-movement) to create animated sequences of NBA plays with D3.js. 
 
+Like this, but moving
+![example image](https://raw.githubusercontent.com/nickb1080/nba-movement-demo/master/img/example.png)
+
 ### Running
 - clone the repo
 - `npm i`
