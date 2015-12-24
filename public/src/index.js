@@ -1,4 +1,5 @@
 const d3 = require("d3");
+const R = require("ramda");
 
 const movement = require("nba-movement");
 
@@ -7,10 +8,14 @@ const HEIGHT = 50;
 const MULTIPLIER = 8;
 const INTERVAL = 1000 / 24;
 
+const pp = document.getElementById("play-pause");
 const gc = document.getElementById("game-clock");
 const sc = document.getElementById("shot-clock");
+const bh = document.getElementById("ball-height");
 
 let svgNode;
+
+let isPaused = false;
 
 main();
 
@@ -27,6 +32,9 @@ function drawEvent (event) {
     let i = 0;
     const {players, moments} = event;
     const interval = setInterval(function () {
+
+      if (isPaused) return;
+
       i += 1;
       if (moments[i] == null) {
         // stop drawing
@@ -45,7 +53,8 @@ function drawMoment (moment) {
   removeSvg();
 
   gameClock(moment);
-  shotClock(moment)
+  shotClock(moment);
+  ballHeight(moment);
 
   const svg = d3.select("body").append("svg")
       .attr("width", WIDTH * MULTIPLIER)
@@ -114,3 +123,10 @@ function shotClock (moment) {
   }
   sc.textContent = clock;
 }
+
+function ballHeight (moment) {
+  let ball = R.find(R.whereEq({type: "ball"}), moment.coordinates);
+  bh.textContent = ball.radius;
+}
+
+pp.addEventListener("click", () => isPaused = !isPaused);

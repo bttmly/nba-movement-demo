@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width">
     <style>
       svg {
-        border: 2px solid black;
         background-image: url(http://stats.nba.com/media/img/fullcourt.svg);
         background-size: cover;
       }
     </style>
   </head>
   <body>
+    <div>
+      <button id="play-pause">Play/Pause</button>
+    </div>
     <pre>
       Game clock: <span id="game-clock"></span>
       Shot clock: <span id="shot-clock"></span>
-      <br/>
-      <span id="test"></span>
+      Ball height: <span id="ball-height"></span>
     </pre>
     <script src="./bundle.js"></script>
   </body>
